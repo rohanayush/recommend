@@ -93,23 +93,21 @@ def getRecommendations():
 
     global qu
     # print("query",qu)
-    a = request.get_json(force=True)
+    a = request.get_json()
+    # a=request.get_json(force=True)
     print("receiving",a)
     cn='in'
-    secret='52c11279b478428daeaf4bfecc1c684a'
+    # secret='52c11279b478428daeaf4bfecc1c684a'
+    secret="3f79f5996fd54c7cad134baba6f8c06a"
     top="https://newsapi.org/v2/top-headlines?country="+ cn+"&apiKey="+secret
-    if(a[0]=="a"):
-        import requests
-        response = requests.get(top)
-        return jsonify(response)
+    
 
 
-    print("query", type(a))
-    ar = []
-    for i in range(len(a)):
-        ar.append(a[i]["content"])
-    print("ar", ar)
-
+    print("query type", type(a))
+    print("query", a)
+    
+    
+    # print("ar", ar)
 
     links=[]
 
@@ -128,7 +126,7 @@ def getRecommendations():
     
     }
     
-    for i in ar:
+    for i in a:
         import requests
         parameters["q"]=i
         response = requests.get(url, params=parameters)
@@ -146,4 +144,5 @@ def getRecommendations():
 
 
 if __name__  == '__main__':
-    app.run(port=5300)
+    app.run(port=5300,debug=True)
+    # app.run(debug=True)
