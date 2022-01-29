@@ -132,7 +132,7 @@ def getRecommendations():
         response = requests.get(url, params=parameters)
         response_json = response.json()
         links.append(response_json)
-    return jsonify(links)
+    return jsonify(links) 
         
     # Make the request
     
